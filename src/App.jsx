@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar.jsx";
 import HomeSection from "./components/HomeSection.jsx";
 import AboutSection from "./components/AboutSection.jsx";
 import ProjectsSection from "./components/ProjectsSection.jsx";
+import SkillsSection from "./components/SkillsSection.jsx";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <HomeSection />
         <AboutSection />
         <ProjectsSection />
+        <SkillsSection />
       </main>
     </>
   );
