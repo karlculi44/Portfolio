@@ -91,7 +91,7 @@ export default function ContactsSection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 md:px-12"
+      className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 md:px-12 py-10"
     >
       <div className="max-w-6xl w-full text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-10">
