@@ -13,7 +13,7 @@ export default function HomeSection() {
           {/* Left: Profile Picture */}
           <div className="flex justify-center w-full md:w-1/2">
             <img
-              src="/src/assets/Picture2.jpg"
+              src="../assets/Profile2.jpg"
               alt="Karl Zamora Culi"
               className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-lg hover:scale-105 transition-transform duration-300"
             />

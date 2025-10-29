@@ -33,7 +33,7 @@ export default function Navbar() {
           className="flex items-center space-x-3 cursor-pointer select-none group"
         >
           <img
-            src="/src/assets/LOGO.png"
+            src="/LOGO.png"
             alt="Logo"
             className="h-10 w-10 group-hover:scale-105 transition-transform duration-300"
           />
