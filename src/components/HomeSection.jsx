@@ -1,5 +1,6 @@
 import { Link } from "react-scroll";
 import { Download, Info } from "lucide-react";
+import picture from "../assets/Picture2.jpg";
 
 export default function HomeSection() {
   return (
@@ -13,7 +14,7 @@ export default function HomeSection() {
           {/* Left: Profile Picture */}
           <div className="flex justify-center w-full md:w-1/2">
             <img
-              src="/src/assets/Picture2.jpg"
+              src={picture}
               alt="Karl Zamora Culi"
               className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-lg hover:scale-105 transition-transform duration-300"
             />

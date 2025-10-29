@@ -1,5 +1,6 @@
 import { Link } from "react-scroll";
 import { FolderGit2 } from "lucide-react";
+import picture from "../assets/Profile-picture.jpg";
 
 export default function AboutSection() {
   return (
@@ -45,7 +46,7 @@ export default function AboutSection() {
         {/* Right: Image */}
         <div className="flex justify-center w-full md:w-1/2 md:border-l md:border-gray-300 md:pl-10">
           <img
-            src="/src/assets/Profile-picture.jpg"
+            src={picture}
             alt="About Karl Zamora Culi"
             className="rounded-2xl w-96 h-96 object-cover shadow-xl hover:scale-105 transition-transform duration-300"
           />
