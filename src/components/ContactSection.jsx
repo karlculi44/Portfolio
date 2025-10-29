@@ -27,7 +27,7 @@ export default function ContactsSection() {
     {
       platform: "Instagram",
       icon: <FaInstagram className="text-pink-500 w-5 h-5" />,
-      link: "https://www.instagram.com/yourusername",
+      link: "https://www.instagram.com/_kaimax_",
     },
     {
       platform: "GitHub",
@@ -47,23 +47,24 @@ export default function ContactsSection() {
     {
       platform: "Twitter",
       icon: <FaTwitter className="text-blue-400 w-5 h-5" />,
-      link: "https://twitter.com/yourusername",
+      link: "https://twitter.com/kaloy",
     },
     {
       platform: "Gmail",
       icon: <FaEnvelope className="text-red-500 w-5 h-5" />,
-      link: "mailto:kaimax187@gmail.com",
+      link: "https://mail.google.com/mail/?view=cm&to=kaimax187@gmail.com",
     },
-
     {
       platform: "Phone",
       icon: <FaPhoneAlt className="text-green-600 w-5 h-5" />,
+      link: "tel:+639533019178",
       text: "+63 953 301 9178",
     },
     {
       platform: "Address",
       icon: <FaHome className="text-gray-700 w-5 h-5" />,
-      text: "Bayawan City, Negros Oriental, Philippines",
+      link: "https://www.google.com/maps/search/?api=1&query=Bayawan+City,+Negros+Oriental,+Philippines+6221",
+      text: "Bayawan City, Negros Oriental, Philippines, 6221",
     },
   ];
 
