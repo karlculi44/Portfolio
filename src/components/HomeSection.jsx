@@ -34,7 +34,7 @@ export default function HomeSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               {/* Download Resume */}
               <a
-                href="/resume.pdf"
+                href="https://drive.google.com/uc?export=download&id=1t-UQJ0oNZkRCpH7rwStRa1uZnMuujjVl"
                 download="Karl-Zamora-Culi-Resume.pdf"
                 className="group inline-flex items-center gap-2 bg-gray-800 text-white font-medium px-6 py-3 rounded-full shadow-md hover:bg-gray-900 hover:shadow-lg hover:shadow-gray-700/30 transition-all duration-300"
               >
