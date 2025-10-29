@@ -5,17 +5,21 @@ import AboutSection from "./components/AboutSection.jsx";
 import ProjectsSection from "./components/ProjectsSection.jsx";
 import SkillsSection from "./components/SkillsSection.jsx";
 import ContactsSection from "./components/ContactSection.jsx";
+import InqueriesForm from "./components/InqueriesForm.jsx";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <header>
+        <Navbar />
+      </header>
       <main>
         <HomeSection />
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />
         <ContactsSection />
+        <InqueriesForm />
       </main>
     </>
   );

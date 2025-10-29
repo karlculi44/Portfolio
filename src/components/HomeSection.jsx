@@ -6,16 +6,16 @@ export default function HomeSection() {
     <>
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-4 md:px-8 mt-13 bg-gray-100"
+        className="min-h-screen flex items-center justify-center bg-gray-100 px-6 md:px-16 py-20"
       >
         {/* Card Container */}
-        <div className="rounded-2xl bg-gray-200 shadow-xl max-w-6xl w-full flex flex-col md:flex-row items-center justify-between p-8 md:p-12 md:gap-10 gap-10 border border-gray-300">
+        <div className="rounded-2xl bg-gray-200 shadow-xl max-w-6xl w-full flex flex-col md:flex-row items-center justify-between border border-gray-300 p-8 md:p-12 gap-10">
           {/* Left: Profile Picture */}
           <div className="flex justify-center w-full md:w-1/2">
             <img
               src="/src/assets/Picture2.jpg"
               alt="Karl Zamora Culi"
-              className="rounded-full w-80 h-100 object-cover shadow-lg hover:scale-105 transition-transform duration-300"
+              className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-lg hover:scale-105 transition-transform duration-300"
             />
           </div>
 
@@ -64,7 +64,7 @@ export default function HomeSection() {
       </section>
 
       {/* Divider */}
-      <hr className="my-10 w-3/4 mx-auto border-t border-gray-400 shadow-sm shadow-gray-500/20 rounded-full" />
+      <hr className="my-10 w-3/4 mx-auto border-t border-gray-300 shadow-sm shadow-gray-500/20 rounded-full" />
     </>
   );
 }

@@ -7,7 +7,11 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaHome,
+  FaYoutube,
+  FaTwitter,
+  FaQuestionCircle,
 } from "react-icons/fa";
+import { Link } from "react-scroll";
 
 export default function ContactsSection() {
   const sectionRef = useRef(null);
@@ -36,10 +40,21 @@ export default function ContactsSection() {
       link: "https://www.linkedin.com/in/karl-culi-131826328/",
     },
     {
+      platform: "YouTube",
+      icon: <FaYoutube className="text-red-600 w-5 h-5" />,
+      link: "https://www.youtube.com/@yourchannel",
+    },
+    {
+      platform: "Twitter",
+      icon: <FaTwitter className="text-blue-400 w-5 h-5" />,
+      link: "https://twitter.com/yourusername",
+    },
+    {
       platform: "Gmail",
       icon: <FaEnvelope className="text-red-500 w-5 h-5" />,
-      text: "kaimax187@gmail.com",
+      link: "mailto:kaimax187@gmail.com",
     },
+
     {
       platform: "Phone",
       icon: <FaPhoneAlt className="text-green-600 w-5 h-5" />,
@@ -66,31 +81,29 @@ export default function ContactsSection() {
     };
   }, []);
 
-  const handleSubmit = () => {
-    // Opens Gmail with prefilled subject & body
-    const mailtoLink = `mailto:kaimax187@gmail.com?subject=Portfolio Inquiry&body=${encodeURIComponent(
-      message
-    )}`;
-    window.location.href = mailtoLink;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Message sent! (Demo only)\n\n" + message);
+    setMessage("");
   };
 
   return (
     <section
       id="contact"
       ref={sectionRef}
-      className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 py-20 px-6"
+      className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 md:px-12"
     >
       <div className="max-w-6xl w-full text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-10">
           Contact Me
         </h2>
 
         {/* Contact Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
           {contacts.map((contact, idx) => (
             <div
               key={idx}
-              className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md p-6 flex items-center gap-4 transition-all duration-500 transform ${
+              className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md p-5 flex items-center gap-4 transition-all duration-500 transform ${
                 visible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
@@ -107,7 +120,7 @@ export default function ContactsSection() {
                   <span className="transition-transform duration-300 group-hover:scale-125">
                     {contact.icon}
                   </span>
-                  <span className="text-left text-gray-700 dark:text-gray-200 font-medium hover:underline">
+                  <span className="text-gray-700 dark:text-gray-200 font-medium hover:underline">
                     {contact.platform}
                   </span>
                 </a>
@@ -116,7 +129,7 @@ export default function ContactsSection() {
                   <span className="transition-transform duration-300 hover:scale-125">
                     {contact.icon}
                   </span>
-                  <span className="text-left text-gray-700 dark:text-gray-200 font-medium">
+                  <span className="text-gray-700 dark:text-gray-200 font-medium text-left">
                     {contact.text}
                   </span>
                 </div>
@@ -124,33 +137,24 @@ export default function ContactsSection() {
             </div>
           ))}
         </div>
-
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md max-w-xl mx-auto">
-          <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
-            Have any inquiries, questions, or concerns? Send me a message!
-          </h3>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <textarea
-              className="w-full p-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-              rows={6}
-              placeholder="Type your message here..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-            />
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white font-medium px-6 py-3 rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-400/40 transition-all duration-300"
-            >
-              Send Message
-              <FaEnvelope className="w-5 h-5" />
-            </button>
-          </form>
-        </div>
       </div>
 
       {/* Divider */}
-      <hr className="my-10 w-3/4 mx-auto border-t border-gray-300 shadow-sm shadow-gray-500/20 rounded-full" />
+      <hr className="w-3/4 mx-auto border-t border-gray-300 shadow-sm shadow-gray-500/20 rounded-full mt-4" />
+
+      {/* Question Button */}
+      <div className="flex justify-center mt-6 mb-10">
+        <Link
+          to="inquiries" // 👈 change this to the id of your inquiry section
+          smooth={true}
+          duration={500}
+          offset={-70}
+          className="flex items-center space-x-2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-700 transition duration-300 cursor-pointer"
+        >
+          <FaQuestionCircle className="w-4 h-4" />
+          <span>Question?</span>
+        </Link>
+      </div>
     </section>
   );
 }
