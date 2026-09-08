@@ -20,6 +20,36 @@ const navLinks = [
   { name: "Contact", to: "contact", icon: Mail },
 ];
 
+function NavbarParticles() {
+  return (
+    <div className="navbar-particle-field" aria-hidden="true">
+      <span className="particle-node particle-node-1" />
+      <span className="particle-node particle-node-2" />
+      <span className="particle-node particle-node-3" />
+      <span className="particle-node particle-node-4" />
+      <span className="particle-node particle-node-5" />
+      <span className="particle-node particle-node-6" />
+      <span className="particle-node particle-node-7" />
+      <span className="particle-node particle-node-8" />
+      <span className="particle-node particle-node-9" />
+      <span className="particle-node particle-node-10" />
+      <span className="particle-node particle-node-11" />
+      <span className="particle-node particle-node-12" />
+      <span className="particle-node particle-node-13" />
+      <span className="particle-node particle-node-14" />
+      <span className="particle-node particle-node-15" />
+      <span className="particle-node particle-node-16" />
+      <span className="particle-node particle-node-17" />
+      <span className="particle-node particle-node-18" />
+      <i className="particle-link particle-link-1" />
+      <i className="particle-link particle-link-2" />
+      <i className="particle-link particle-link-3" />
+      <i className="particle-link particle-link-4" />
+      <i className="particle-link particle-link-5" />
+    </div>
+  );
+}
+
 function Navigation({ onNavigate }) {
   const [active, setActive] = useState("home");
 
@@ -83,6 +113,7 @@ export default function Navbar({ theme, onToggleTheme }) {
   return (
     <>
       <aside className="workspace-sidebar" aria-label="Primary navigation">
+        <NavbarParticles />
         <Brand />
         <div className="nav-label">Explore</div>
         <Navigation />
@@ -102,6 +133,7 @@ export default function Navbar({ theme, onToggleTheme }) {
         </div>
       </aside>
       <div className="mobile-bar">
+        <NavbarParticles />
         <Brand />
         <div className="mobile-actions">
           <button
@@ -136,6 +168,7 @@ export default function Navbar({ theme, onToggleTheme }) {
         aria-label="Mobile navigation"
         aria-hidden={!isOpen}
       >
+        <NavbarParticles />
         <div className="mobile-menu-header">
           <span className="mono">NAVIGATION</span>
           <button
