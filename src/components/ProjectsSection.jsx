@@ -1,5 +1,6 @@
 import { ArrowUpRight, Hammer } from "lucide-react";
-import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Github, X } from "lucide-react";
 import ScrollReveal from "./ScrollReveal.jsx";
 
@@ -33,6 +34,105 @@ function CarouselButton({ direction, onClick }) {
   );
 }
 
+function ProjectViewer({ imageIndex, onPrevious, onNext, onClose }) {
+  const [isClosing, setIsClosing] = useState(false);
+  const closeButtonRef = useRef(null);
+  const previousActiveElementRef = useRef(null);
+  const callbacksRef = useRef({ onPrevious, onNext, onClose });
+
+  callbacksRef.current = { onPrevious, onNext, onClose };
+
+  useEffect(() => {
+    previousActiveElementRef.current = document.activeElement;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const focusCloseButton = window.requestAnimationFrame(() => {
+      closeButtonRef.current?.focus();
+    });
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsClosing(true);
+      if (event.key === "ArrowLeft") callbacksRef.current.onPrevious();
+      if (event.key === "ArrowRight") callbacksRef.current.onNext();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.cancelAnimationFrame(focusCloseButton);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+      previousActiveElementRef.current?.focus?.();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isClosing) return undefined;
+
+    const closeTimer = window.setTimeout(onClose, 180);
+    return () => window.clearTimeout(closeTimer);
+  }, [isClosing, onClose]);
+
+  const requestClose = () => setIsClosing(true);
+
+  return createPortal(
+    <div
+      className={`project-modal${isClosing ? " is-closing" : ""}`}
+      role="presentation"
+      onClick={requestClose}
+    >
+      <div
+        className="project-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-label="ClassFlow project screenshots"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="project-modal-header">
+          <span className="mono">CLASSFLOW / SCREENSHOTS</span>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            className="icon-button"
+            onClick={requestClose}
+            aria-label="Close screenshots"
+          >
+            <X size={18} />
+          </button>
+        </div>
+        <div className="project-modal-image-wrap">
+          <img
+            src={imagePath(classFlowImages[imageIndex])}
+            alt={`ClassFlow screenshot ${imageIndex + 1}`}
+          />
+          <button
+            type="button"
+            className="modal-carousel-button modal-carousel-previous"
+            onClick={onPrevious}
+            aria-label="Previous ClassFlow screenshot"
+          >
+            <ArrowLeft size={20} />
+          </button>
+          <button
+            type="button"
+            className="modal-carousel-button modal-carousel-next"
+            onClick={onNext}
+            aria-label="Next ClassFlow screenshot"
+          >
+            <ArrowRight size={20} />
+          </button>
+        </div>
+        <div className="project-modal-footer">
+          <span>{classFlowImages[imageIndex].replaceAll("_", " ")}</span>
+          <span className="mono">
+            {String(imageIndex + 1).padStart(2, "0")} / {String(classFlowImages.length).padStart(2, "0")}
+          </span>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
 function ClassFlowCard() {
   const [currentImage, setCurrentImage] = useState(0);
   const [modalImage, setModalImage] = useState(null);
@@ -53,31 +153,6 @@ function ClassFlowCard() {
 
     return () => window.clearInterval(interval);
   }, [carouselReset]);
-
-  useEffect(() => {
-    if (modalImage === null) return undefined;
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") setModalImage(null);
-      if (event.key === "ArrowLeft") {
-        setModalImage(
-          (index) =>
-            (index - 1 + classFlowImages.length) % classFlowImages.length,
-        );
-      }
-      if (event.key === "ArrowRight") {
-        setModalImage((index) => (index + 1) % classFlowImages.length);
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [modalImage]);
 
   return (
     <>
@@ -160,67 +235,19 @@ function ClassFlowCard() {
       </article>
 
       {modalImage !== null && (
-        <div
-          className="project-modal"
-          role="presentation"
-          onClick={() => setModalImage(null)}
-        >
-          <div
-            className="project-modal-content"
-            role="dialog"
-            aria-modal="true"
-            aria-label="ClassFlow project screenshots"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="project-modal-header">
-              <span className="mono">CLASSFLOW / SCREENSHOTS</span>
-              <button
-                type="button"
-                className="icon-button"
-                onClick={() => setModalImage(null)}
-                aria-label="Close screenshots"
-              >
-                <X size={18} />
-              </button>
-            </div>
-            <div className="project-modal-image-wrap">
-              <img
-                src={imagePath(classFlowImages[modalImage])}
-                alt={`ClassFlow screenshot ${modalImage + 1}`}
-              />
-              <button
-                type="button"
-                className="modal-carousel-button modal-carousel-previous"
-                onClick={() =>
-                  setModalImage(
-                    (index) =>
-                      (index - 1 + classFlowImages.length) %
-                      classFlowImages.length,
-                  )
-                }
-                aria-label="Previous ClassFlow screenshot"
-              >
-                <ArrowLeft size={20} />
-              </button>
-              <button
-                type="button"
-                className="modal-carousel-button modal-carousel-next"
-                onClick={() =>
-                  setModalImage((index) => (index + 1) % classFlowImages.length)
-                }
-                aria-label="Next ClassFlow screenshot"
-              >
-                <ArrowRight size={20} />
-              </button>
-            </div>
-            <div className="project-modal-footer">
-              <span>{classFlowImages[modalImage].replaceAll("_", " ")}</span>
-              <span className="mono">
-                {modalImage + 1} / {classFlowImages.length}
-              </span>
-            </div>
-          </div>
-        </div>
+        <ProjectViewer
+          imageIndex={modalImage}
+          onPrevious={() =>
+            setModalImage(
+              (index) =>
+                (index - 1 + classFlowImages.length) % classFlowImages.length,
+            )
+          }
+          onNext={() =>
+            setModalImage((index) => (index + 1) % classFlowImages.length)
+          }
+          onClose={() => setModalImage(null)}
+        />
       )}
     </>
   );
