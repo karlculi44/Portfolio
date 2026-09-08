@@ -124,7 +124,8 @@ function ProjectViewer({ imageIndex, onPrevious, onNext, onClose }) {
         <div className="project-modal-footer">
           <span>{classFlowImages[imageIndex].replaceAll("_", " ")}</span>
           <span className="mono">
-            {String(imageIndex + 1).padStart(2, "0")} / {String(classFlowImages.length).padStart(2, "0")}
+            {String(imageIndex + 1).padStart(2, "0")} /{" "}
+            {String(classFlowImages.length).padStart(2, "0")}
           </span>
         </div>
       </div>
