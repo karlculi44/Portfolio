@@ -150,7 +150,17 @@ export default function SkillsSection() {
                   {skills.map((skill) => (
                     <div className="skill-row" key={skill.name}>
                       <div className="skill-name">
-                        <img src={skill.logo} alt="" />
+                        <img
+                          className={
+                            skill.name === "GitHub Copilot"
+                              ? "skill-logo-copilot"
+                              : ["GitHub", "Express.js"].includes(skill.name)
+                                ? "skill-logo-dark"
+                                : undefined
+                          }
+                          src={skill.logo}
+                          alt=""
+                        />
                         {skill.name}
                       </div>
                       <span className="skill-value">{skill.level}%</span>

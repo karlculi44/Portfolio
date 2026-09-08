@@ -62,7 +62,15 @@ const technologies = [
 function MarqueeItems() {
   return technologies.map(({ name, logo }) => (
     <span className="tech-marquee-item" key={name}>
-      <img src={logo} alt="" />
+      <img
+        className={
+          ["GitHub", "GitHub Copilot", "Express"].includes(name)
+            ? "tech-marquee-logo-dark"
+            : undefined
+        }
+        src={logo}
+        alt=""
+      />
       <span>{name}</span>
     </span>
   ));

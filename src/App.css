@@ -683,6 +683,9 @@ button {
   height: 24px;
   object-fit: contain;
 }
+:root:not([data-theme="light"]) .tech-marquee-logo-dark {
+  filter: invert(1);
+}
 @keyframes tech-marquee-scroll {
   from {
     transform: translate3d(0, 0, 0);
@@ -1250,6 +1253,12 @@ h3 {
   width: 18px;
   height: 18px;
   object-fit: contain;
+}
+:root[data-theme="light"] .skill-logo-copilot {
+  filter: invert(1);
+}
+:root:not([data-theme="light"]) .skill-logo-dark {
+  filter: invert(1);
 }
 .skill-value {
   color: var(--accent);
