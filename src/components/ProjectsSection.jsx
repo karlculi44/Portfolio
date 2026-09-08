@@ -254,7 +254,7 @@ export default function ProjectsSection() {
       <div className="section-inner">
         <div className="section-heading">
           <div>
-            <div className="eyebrow">03 / selected work</div>
+            <div className="eyebrow">03 / selected_work</div>
             <h2>Projects</h2>
           </div>
           <p>

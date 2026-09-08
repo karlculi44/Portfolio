@@ -25,8 +25,8 @@ export default function AboutSection() {
               </p>
               <p>
                 I’m currently learning software engineering and always looking
-                for ways to improve and grow. Outside of coding, I like working
-                out, exploring tech, and staying consistent with my goals.
+                for ways to improve and grow. Outside of coding, I play
+                pickleball, explore tech, and stay consistent with my goals.
               </p>
               <a href="#projects" className="button button-primary my-2">
                 Explore projects <ArrowUpRight size={16} />

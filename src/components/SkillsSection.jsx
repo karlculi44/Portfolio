@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { Code2, Server, UsersRound, Wrench } from "lucide-react";
+import { createElement } from "react";
 import ScrollReveal from "./ScrollReveal.jsx";
 
 const skillCategories = [
   {
     title: "Frontend",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    icon: Code2,
     skills: [
       {
         name: "HTML / CSS",
@@ -30,7 +32,7 @@ const skillCategories = [
   },
   {
     title: "Backend & database",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    icon: Server,
     skills: [
       {
         name: "Node.js",
@@ -56,7 +58,7 @@ const skillCategories = [
   },
   {
     title: "Tools",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    icon: Wrench,
     skills: [
       {
         name: "Git",
@@ -82,7 +84,7 @@ const skillCategories = [
   },
   {
     title: "Soft Skills",
-    logo: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+    icon: UsersRound,
     skills: [
       {
         name: "Problem solving",
@@ -133,7 +135,7 @@ export default function SkillsSection() {
           </p>
         </div>
         <div className="skill-grid">
-          {skillCategories.map(({ title, logo, skills }, index) => (
+          {skillCategories.map(({ title, icon, skills }, index) => (
             <ScrollReveal
               className="skill-reveal"
               delay={index * 90}
@@ -141,7 +143,7 @@ export default function SkillsSection() {
             >
               <article className="skill-card">
                 <div className="skill-card-header">
-                  <img src={logo} alt="" />
+                  {createElement(icon, { size: 26, strokeWidth: 1.8 })}
                   <h3>{title}</h3>
                 </div>
                 <div className="skill-list">

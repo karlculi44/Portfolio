@@ -93,9 +93,6 @@ export default function ContactsSection() {
               >
                 <FaEnvelope size={16} /> Send me an email
               </a>
-              <a className="contact-email" href="mailto:kaimax187@gmail.com">
-                kaimax187@gmail.com
-              </a>
             </div>
           </div>
         </ScrollReveal>
