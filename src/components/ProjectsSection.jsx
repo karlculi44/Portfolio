@@ -1,50 +1,41 @@
-import { Hammer } from "lucide-react";
+import { ArrowUpRight, Hammer } from "lucide-react";
 
 export default function ProjectsSection() {
   return (
-    <>
-      <section
-        id="projects"
-        className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-6 md:px-16 py-20 text-center"
-      >
-        <div className="max-w-6xl w-full">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            My Projects
-          </h2>
-          <p className="text-gray-600 mb-12 text-lg">
-            Works are in progress — exciting things are coming soon! 🛠️
+    <section id="projects" className="section-shell">
+      <div className="section-inner">
+        <div className="section-heading">
+          <div>
+            <div className="eyebrow">03 / selected work</div>
+            <h2>Projects</h2>
+          </div>
+          <p>
+            Works are in progress. The next build is taking shape, one
+            thoughtful interaction at a time.
           </p>
-
-          {/* Project Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((_, i) => (
-              <div
-                key={i}
-                className="bg-gray-200 border border-gray-300 rounded-2xl shadow-md hover:shadow-lg hover:shadow-gray-400/30 transition-all duration-300 overflow-hidden flex flex-col"
-              >
-                {/* Placeholder Image */}
-                <div className="bg-gray-300 w-full h-48 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-gray-400 rounded-lg animate-pulse" />
-                </div>
-
-                {/* Card Content */}
-                <div className="flex-1 flex flex-col items-center justify-center p-8">
-                  <Hammer className="w-10 h-10 text-gray-500 mb-4 animate-bounce-slow" />
-                  <h3 className="text-xl font-semibold text-gray-700">
-                    Coming Soon
-                  </h3>
-                  <p className="text-gray-500 mt-2 text-sm">
-                    This project is under development.
-                  </p>
+        </div>
+        <div className="project-grid">
+          {["01", "02", "03"].map((number) => (
+            <article className="project-card" key={number}>
+              <div className="project-top">
+                <span className="project-index">PROJECT_{number}</span>
+                <Hammer className="project-icon" size={24} />
+              </div>
+              <div className="project-body">
+                <h3>Coming soon</h3>
+                <p>
+                  This project is under development. New work will appear here
+                  as it becomes ready to share.
+                </p>
+                <div className="project-foot">
+                  <span className="mono">IN DEVELOPMENT</span>
+                  <ArrowUpRight size={16} />
                 </div>
               </div>
-            ))}
-          </div>
+            </article>
+          ))}
         </div>
-      </section>
-
-      {/* Divider */}
-      <hr className="my-10 w-3/4 mx-auto border-t border-gray-400 shadow-sm shadow-gray-500/20 rounded-full" />
-    </>
+      </div>
+    </section>
   );
 }
