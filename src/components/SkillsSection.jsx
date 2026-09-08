@@ -26,7 +26,7 @@ const skillCategories = [
       {
         name: "Tailwind CSS",
         level: 70,
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+        logo: "https://cdn.simpleicons.org/tailwindcss/38BDF8",
       },
     ],
   },
