@@ -280,6 +280,9 @@ button {
 .section-shell.compact {
   min-height: auto;
 }
+.projects-section {
+  max-width: 1400px;
+}
 .section-inner {
   width: 100%;
 }
@@ -468,11 +471,11 @@ h3 {
 .skill-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 24px;
 }
 .project-card {
   display: flex;
-  min-height: 250px;
+  min-height: 390px;
   flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -484,6 +487,180 @@ h3 {
   transform: translateY(-5px);
   border-color: var(--accent);
   box-shadow: var(--shadow);
+}
+.classflow-card {
+  cursor: zoom-in;
+}
+.project-image-wrap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.project-image-wrap {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  background: var(--surface-raised);
+  border-bottom: 1px solid var(--line);
+}
+.project-image-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.45s ease;
+}
+.project-image-track img {
+  display: block;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-carousel-controls {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.carousel-button,
+.modal-carousel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  backdrop-filter: blur(8px);
+  transition: 0.2s ease;
+}
+.carousel-button:hover,
+.carousel-button:focus-visible,
+.modal-carousel-button:hover,
+.modal-carousel-button:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+  transform: scale(1.05);
+}
+.project-image-count {
+  padding: 5px 8px;
+  color: var(--text);
+  font-size: 9px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  backdrop-filter: blur(8px);
+}
+.project-card-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.project-card-heading h3 {
+  margin: 5px 0 0;
+}
+.project-tags {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0 16px;
+}
+.project-tags span {
+  padding: 4px 7px;
+  color: var(--muted);
+  font:
+    9px "Space Mono",
+    monospace;
+  background: var(--surface-raised);
+  border-radius: 4px;
+}
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+.project-actions .button {
+  padding: 9px 11px;
+  font-size: 11px;
+}
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(5, 10, 12, 0.78);
+  backdrop-filter: blur(10px);
+}
+.project-modal-content {
+  width: min(980px, 100%);
+  max-height: calc(100vh - 48px);
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+.project-modal-header,
+.project-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.project-modal-header {
+  padding: 0 0 12px 4px;
+}
+.project-modal-header .icon-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+.project-modal-image-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  max-height: calc(100vh - 160px);
+  overflow: hidden;
+  background: var(--bg);
+  border-radius: 6px;
+}
+.project-modal-image-wrap img {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 160px);
+  object-fit: contain;
+}
+.modal-carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+}
+.modal-carousel-button:hover,
+.modal-carousel-button:focus-visible {
+  transform: translateY(-50%) scale(1.05);
+}
+.modal-carousel-previous {
+  left: 16px;
+}
+.modal-carousel-next {
+  right: 16px;
+}
+.project-modal-footer {
+  padding: 12px 4px 0;
 }
 .project-top {
   height: 92px;
@@ -507,7 +684,7 @@ h3 {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 21px;
+  padding: 26px;
 }
 .project-body p {
   color: var(--muted);
@@ -711,6 +888,15 @@ h3 {
   .hero-grid {
     gap: 36px;
   }
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .project-card {
+    min-height: 370px;
+  }
+  .project-image-wrap {
+    height: 220px;
+  }
 }
 @media (max-width: 680px) {
   .workspace-sidebar {
@@ -779,6 +965,26 @@ h3 {
     grid-template-columns: 1fr;
   }
   .project-card {
-    min-height: 220px;
+    min-height: 390px;
+  }
+  .project-image-wrap {
+    height: 240px;
+  }
+  .project-modal {
+    padding: 12px;
+  }
+  .project-modal-content {
+    max-height: calc(100vh - 24px);
+    padding: 10px;
+  }
+  .project-modal-image-wrap,
+  .project-modal-image-wrap img {
+    max-height: calc(100vh - 125px);
+  }
+  .modal-carousel-previous {
+    left: 8px;
+  }
+  .modal-carousel-next {
+    right: 8px;
   }
 }
