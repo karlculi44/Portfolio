@@ -210,7 +210,10 @@ function ClassFlowCard() {
           </p>
           <div className="project-tags">
             <span>React</span>
-            <span>Full-stack</span>
+            <span>ExpressJS</span>
+            <span>Tailwind</span>
+            <span>MySQL</span>
+            <span>OAuth</span>
           </div>
           <div className="project-actions">
             <a
@@ -221,15 +224,6 @@ function ClassFlowCard() {
               onClick={(event) => event.stopPropagation()}
             >
               <Github size={15} /> GitHub
-            </a>
-            <a
-              href={repositoryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button button-secondary"
-              onClick={(event) => event.stopPropagation()}
-            >
-              Live demo <ArrowUpRight size={15} />
             </a>
           </div>
         </div>
