@@ -11,7 +11,7 @@ const classFlowImages = [
 ];
 
 const imagePath = (fileName) =>
-  `projects/classflow/${encodeURIComponent(fileName)}`;
+  `${import.meta.env.BASE_URL}projects/classflow/${encodeURIComponent(fileName)}`;
 
 function CarouselButton({ direction, onClick }) {
   const isPrevious = direction === "previous";

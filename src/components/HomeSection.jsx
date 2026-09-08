@@ -2,15 +2,6 @@ import { ArrowUpRight, Download, Terminal } from "lucide-react";
 import picture from "../assets/Picture2.jpg";
 
 export default function HomeSection() {
-  const handleResumeDownload = () => {
-    const downloadLink = document.createElement("a");
-    downloadLink.href = `${import.meta.env.BASE_URL}Karl_Zamora_Culi_Resume.pdf`;
-    downloadLink.download = "Karl-Zamora-Culi-Resume.pdf";
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-  };
-
   return (
     <section id="home" className="section-shell">
       <div className="section-inner hero-grid">
@@ -27,13 +18,14 @@ export default function HomeSection() {
             <a href="#projects" className="button button-primary ">
               View my work <ArrowUpRight size={16} />
             </a>
-            <button
-              type="button"
-              onClick={handleResumeDownload}
+            <a
+              href={`${import.meta.env.BASE_URL}Karl_Zamora_Culi_Resume.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="button button-secondary"
             >
               <Download size={16} /> Resume
-            </button>
+            </a>
           </div>
           <div className="hero-meta">
             <div>
