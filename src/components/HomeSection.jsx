@@ -8,7 +8,7 @@ export default function HomeSection() {
       <div className="section-inner hero-grid">
         <div>
           <ScrollReveal delay={0}>
-            <div className="eyebrow">01 / welcome to my workspace</div>
+            <div className="eyebrow">01 / welcome to my portfolio</div>
           </ScrollReveal>
           <ScrollReveal delay={140}>
             <h1>
