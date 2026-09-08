@@ -126,7 +126,6 @@ function ClassFlowCard() {
               <span className="project-index">PROJECT_01</span>
               <h3>ClassFlow</h3>
             </div>
-            <Hammer className="project-icon" size={22} />
           </div>
           <p>
             A classroom management platform with admin dashboards for

@@ -24,7 +24,9 @@ const skillCategories = [
       {
         name: "Tailwind CSS",
         level: 70,
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+        logo: "https://cdn.simpleicons.org/tailwindcss",
+        fallbackLogo:
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
       },
     ],
   },
@@ -48,14 +50,14 @@ const skillCategories = [
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
       },
       {
-        name: "MySQL",
+        name: "PostgreSQL",
         level: 70,
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
       },
     ],
   },
   {
-    title: "Tools & soft skills",
+    title: "Tools",
     icon: Wrench,
     skills: [
       {
@@ -69,14 +71,40 @@ const skillCategories = [
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
       },
       {
+        name: "Vitest",
+        level: 70,
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitest/vitest-original.svg",
+      },
+      {
+        name: "GitHub Copilot",
+        level: 80,
+        logo: "https://cdn.simpleicons.org/githubcopilot",
+      },
+    ],
+  },
+  {
+    title: "Soft Skills",
+    logo: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+    skills: [
+      {
         name: "Problem solving",
         level: 85,
         logo: "https://cdn-icons-png.flaticon.com/512/2721/2721276.png",
       },
       {
-        name: "Teamwork",
+        name: "Attention to Detail",
         level: 80,
-        logo: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+        logo: "https://cdn-icons-png.flaticon.com/512/2921/2921222.png",
+      },
+      {
+        name: "Critical Thinking",
+        level: 85,
+        logo: "https://cdn-icons-png.flaticon.com/512/2919/2919592.png",
+      },
+      {
+        name: "Team Oriented",
+        level: 85,
+        logo: "https://cdn-icons-png.flaticon.com/512/1256/1256650.png",
       },
     ],
   },
@@ -107,17 +135,30 @@ export default function SkillsSection() {
           </p>
         </div>
         <div className="skill-grid">
-          {skillCategories.map(({ title, icon, skills }) => (
+          {skillCategories.map(({ title, icon, logo, skills }) => (
             <article className="skill-card" key={title}>
               <div className="skill-card-header">
-                {createElement(icon, { size: 20 })}
+                {icon ? (
+                  createElement(icon, { size: 26, strokeWidth: 1.8 })
+                ) : (
+                  <img src={logo} alt="" />
+                )}
                 <h3>{title}</h3>
               </div>
               <div className="skill-list">
                 {skills.map((skill) => (
                   <div className="skill-row" key={skill.name}>
                     <div className="skill-name">
-                      <img src={skill.logo} alt="" />
+                      <img
+                        src={skill.logo}
+                        alt=""
+                        onError={(event) => {
+                          if (skill.fallbackLogo) {
+                            event.currentTarget.onerror = null;
+                            event.currentTarget.src = skill.fallbackLogo;
+                          }
+                        }}
+                      />
                       {skill.name}
                     </div>
                     <span className="skill-value">{skill.level}%</span>

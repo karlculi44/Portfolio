@@ -481,11 +481,15 @@ h3 {
   color: var(--accent);
   font-size: 10px;
 }
-.project-grid,
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
 .skill-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 16px;
 }
 .project-card {
   display: flex;
@@ -496,6 +500,9 @@ h3 {
   border-radius: 10px;
   overflow: hidden;
   transition: 0.25s ease;
+}
+.classflow-card {
+  border-radius: 16px;
 }
 .project-card:hover {
   transform: translateY(-5px);
@@ -511,7 +518,7 @@ h3 {
 }
 .project-image-wrap {
   position: relative;
-  height: 240px;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--surface-raised);
   border-bottom: 1px solid var(--line);
@@ -526,7 +533,8 @@ h3 {
   flex: 0 0 100%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--surface-raised);
 }
 .project-carousel-controls {
   position: absolute;
@@ -714,7 +722,8 @@ h3 {
   font-size: 10px;
 }
 .skill-grid {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
 }
 .skill-card {
   padding: 22px;
@@ -727,6 +736,11 @@ h3 {
   align-items: center;
   gap: 10px;
   margin-bottom: 22px;
+}
+.skill-card-header img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 .skill-card-header svg {
   color: var(--accent);
@@ -920,9 +934,6 @@ h3 {
   .project-card {
     min-height: 370px;
   }
-  .project-image-wrap {
-    height: 220px;
-  }
 }
 @media (max-width: 680px) {
   .workspace-sidebar {
@@ -1041,15 +1052,11 @@ h3 {
   .section-heading p {
     margin-top: 16px;
   }
-  .project-grid,
-  .skill-grid {
+  .project-grid {
     grid-template-columns: 1fr;
   }
-  .project-card {
-    min-height: 390px;
-  }
-  .project-image-wrap {
-    height: 240px;
+  .skill-grid {
+    grid-template-columns: 1fr;
   }
   .project-modal {
     padding: 12px;
