@@ -6,6 +6,7 @@ import AboutSection from "./components/AboutSection.jsx";
 import ProjectsSection from "./components/ProjectsSection.jsx";
 import SkillsSection from "./components/SkillsSection.jsx";
 import ContactsSection from "./components/ContactSection.jsx";
+import CursorGlow from "./components/CursorGlow.jsx";
 import TechMarquee from "./components/TechMarquee.jsx";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <span />
         <span />
       </div>
+      {theme === "dark" && <CursorGlow />}
       <header>
         <Navbar
           theme={theme}

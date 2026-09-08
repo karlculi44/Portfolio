@@ -137,6 +137,30 @@ button {
   bottom: 18%;
   left: 58%;
 }
+.cursor-glow {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  pointer-events: none;
+  opacity: var(--cursor-glow-opacity, 0);
+  transform: translate3d(
+    calc(var(--cursor-x, 50vw) - 50%),
+    calc(var(--cursor-y, 50vh) - 50%),
+    0
+  );
+  background: radial-gradient(
+    circle,
+    rgba(117, 210, 189, 0.11) 0,
+    rgba(117, 210, 189, 0.045) 22%,
+    rgba(117, 210, 189, 0.015) 48%,
+    transparent 72%
+  );
+  transition: opacity 0.24s ease;
+  will-change: transform, opacity;
+}
 .workspace-sidebar {
   position: fixed;
   inset: 0 auto 0 0;
@@ -491,9 +515,6 @@ h3 {
 }
 .profile-caption span:last-child {
   color: var(--accent);
-}
-.about-profile-frame {
-  margin-bottom: 28px;
 }
 .section-heading {
   display: flex;
