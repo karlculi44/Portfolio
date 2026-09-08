@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import ScrollReveal from "./ScrollReveal.jsx";
 
 const skillCategories = [
   {
@@ -132,30 +133,36 @@ export default function SkillsSection() {
           </p>
         </div>
         <div className="skill-grid">
-          {skillCategories.map(({ title, logo, skills }) => (
-            <article className="skill-card" key={title}>
-              <div className="skill-card-header">
-                <img src={logo} alt="" />
-                <h3>{title}</h3>
-              </div>
-              <div className="skill-list">
-                {skills.map((skill) => (
-                  <div className="skill-row" key={skill.name}>
-                    <div className="skill-name">
-                      <img src={skill.logo} alt="" />
-                      {skill.name}
+          {skillCategories.map(({ title, logo, skills }, index) => (
+            <ScrollReveal
+              className="skill-reveal"
+              delay={index * 90}
+              key={title}
+            >
+              <article className="skill-card">
+                <div className="skill-card-header">
+                  <img src={logo} alt="" />
+                  <h3>{title}</h3>
+                </div>
+                <div className="skill-list">
+                  {skills.map((skill) => (
+                    <div className="skill-row" key={skill.name}>
+                      <div className="skill-name">
+                        <img src={skill.logo} alt="" />
+                        {skill.name}
+                      </div>
+                      <span className="skill-value">{skill.level}%</span>
+                      <div className="skill-track">
+                        <div
+                          className="skill-fill"
+                          style={{ width: visible ? `${skill.level}%` : "0%" }}
+                        />
+                      </div>
                     </div>
-                    <span className="skill-value">{skill.level}%</span>
-                    <div className="skill-track">
-                      <div
-                        className="skill-fill"
-                        style={{ width: visible ? `${skill.level}%` : "0%" }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </article>
+                  ))}
+                </div>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>

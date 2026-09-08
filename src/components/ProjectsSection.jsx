@@ -1,6 +1,7 @@
 import { ArrowUpRight, Hammer } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Github, X } from "lucide-react";
+import ScrollReveal from "./ScrollReveal.jsx";
 
 const repositoryUrl = "https://github.com/karlculi44/ClassFlow";
 const classFlowImages = [
@@ -262,9 +263,15 @@ export default function ProjectsSection() {
           </p>
         </div>
         <div className="project-grid">
-          <ClassFlowCard />
-          <PlaceholderCard number="02" />
-          <PlaceholderCard number="03" />
+          <ScrollReveal className="project-reveal">
+            <ClassFlowCard />
+          </ScrollReveal>
+          <ScrollReveal className="project-reveal" delay={100}>
+            <PlaceholderCard number="02" />
+          </ScrollReveal>
+          <ScrollReveal className="project-reveal" delay={200}>
+            <PlaceholderCard number="03" />
+          </ScrollReveal>
         </div>
       </div>
     </section>

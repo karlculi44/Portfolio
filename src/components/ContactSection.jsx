@@ -1,4 +1,5 @@
 import { createElement } from "react";
+import ScrollReveal from "./ScrollReveal.jsx";
 import {
   FaEnvelope,
   FaFacebookF,
@@ -60,42 +61,44 @@ export default function ContactsSection() {
             channels below.
           </p>
         </div>
-        <div className="contact-layout">
-          <div className="contact-list">
-            {contacts.map(({ platform, icon, link, text }) => (
+        <ScrollReveal className="contact-reveal">
+          <div className="contact-layout">
+            <div className="contact-list">
+              {contacts.map(({ platform, icon, link, text }) => (
+                <a
+                  className="contact-link"
+                  href={link}
+                  key={platform}
+                  target={link.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    link.startsWith("http") ? "noopener noreferrer" : undefined
+                  }
+                >
+                  {createElement(icon, { size: 16 })}
+                  <span>{text || platform}</span>
+                </a>
+              ))}
+            </div>
+            <div className="panel contact-card">
+              <div className="eyebrow">DIRECT_CHANNEL</div>
+              <h3>Let’s connect</h3>
+              <p>
+                Have a project, opportunity, or just want to say hello? I’m
+                always open to meaningful conversations.
+              </p>
               <a
-                className="contact-link"
-                href={link}
-                key={platform}
-                target={link.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  link.startsWith("http") ? "noopener noreferrer" : undefined
-                }
+                href="mailto:kaimax187@gmail.com"
+                className="button button-primary contact-cta"
+                aria-label="Send an email to Karl Culi"
               >
-                {createElement(icon, { size: 16 })}
-                <span>{text || platform}</span>
+                <FaEnvelope size={16} /> Send me an email
               </a>
-            ))}
+              <a className="contact-email" href="mailto:kaimax187@gmail.com">
+                kaimax187@gmail.com
+              </a>
+            </div>
           </div>
-          <div className="panel contact-card">
-            <div className="eyebrow">DIRECT_CHANNEL</div>
-            <h3>Let’s connect</h3>
-            <p>
-              Have a project, opportunity, or just want to say hello? I’m always
-              open to meaningful conversations.
-            </p>
-            <a
-              href="mailto:kaimax187@gmail.com"
-              className="button button-primary contact-cta"
-              aria-label="Send an email to Karl Culi"
-            >
-              <FaEnvelope size={16} /> Send me an email
-            </a>
-            <a className="contact-email" href="mailto:kaimax187@gmail.com">
-              kaimax187@gmail.com
-            </a>
-          </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
