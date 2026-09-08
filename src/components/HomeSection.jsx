@@ -27,8 +27,9 @@ export default function HomeSection() {
                 View my work <ArrowUpRight size={16} />
               </a>
               <a
-                href="https://drive.google.com/uc?export=download&id=1t-UQJ0oNZkRCpH7rwStRa1uZnMuujjVl"
-                download="Karl-Zamora-Culi-Resume.pdf"
+                href={`${import.meta.env.BASE_URL}Karl_Zamora_Culi_Resume.pdf`}
+                target="_blank"
+                rel="noreferrer"
                 className="button button-secondary"
               >
                 <Download size={16} /> Resume
