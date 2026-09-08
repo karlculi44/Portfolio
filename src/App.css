@@ -283,6 +283,66 @@ button {
   z-index: 1;
   margin-left: 238px;
 }
+.tech-marquee {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+}
+.tech-marquee-viewport {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: tech-marquee-scroll 42s linear infinite;
+  will-change: transform;
+}
+.tech-marquee.is-paused .tech-marquee-track {
+  animation-play-state: paused;
+}
+.tech-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 42px;
+  padding: 19px 21px;
+}
+.tech-marquee-item {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font:
+    12px "Space Mono",
+    monospace;
+  white-space: nowrap;
+}
+.tech-marquee-item img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+@keyframes tech-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
 .section-shell {
   max-width: 1180px;
   min-height: 100vh;
@@ -874,6 +934,13 @@ h3 {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+  .tech-marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+  .tech-marquee-group[aria-hidden="true"] {
+    display: none;
+  }
 }
 @media (max-width: 900px) {
   .workspace-sidebar {
@@ -1026,6 +1093,21 @@ h3 {
   }
   .main-content {
     margin-left: 0;
+  }
+  .tech-marquee {
+    margin-top: 68px;
+  }
+  .tech-marquee-group {
+    gap: 28px;
+    padding: 15px 14px;
+  }
+  .tech-marquee-item {
+    gap: 8px;
+    font-size: 10px;
+  }
+  .tech-marquee-item img {
+    width: 20px;
+    height: 20px;
   }
   .section-shell {
     min-height: auto;

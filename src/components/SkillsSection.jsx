@@ -1,10 +1,9 @@
-import { Code2, Server, Wrench } from "lucide-react";
-import { createElement, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const skillCategories = [
   {
     title: "Frontend",
-    icon: Code2,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
     skills: [
       {
         name: "HTML / CSS",
@@ -24,15 +23,13 @@ const skillCategories = [
       {
         name: "Tailwind CSS",
         level: 70,
-        logo: "https://cdn.simpleicons.org/tailwindcss",
-        fallbackLogo:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
       },
     ],
   },
   {
     title: "Backend & database",
-    icon: Server,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
     skills: [
       {
         name: "Node.js",
@@ -58,7 +55,7 @@ const skillCategories = [
   },
   {
     title: "Tools",
-    icon: Wrench,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
     skills: [
       {
         name: "Git",
@@ -78,7 +75,7 @@ const skillCategories = [
       {
         name: "GitHub Copilot",
         level: 80,
-        logo: "https://cdn.simpleicons.org/githubcopilot",
+        logo: "https://cdn.simpleicons.org/githubcopilot/ffffff",
       },
     ],
   },
@@ -92,9 +89,9 @@ const skillCategories = [
         logo: "https://cdn-icons-png.flaticon.com/512/2721/2721276.png",
       },
       {
-        name: "Attention to Detail",
+        name: "Teamwork",
         level: 80,
-        logo: "https://cdn-icons-png.flaticon.com/512/2921/2921222.png",
+        logo: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
       },
       {
         name: "Critical Thinking",
@@ -135,30 +132,17 @@ export default function SkillsSection() {
           </p>
         </div>
         <div className="skill-grid">
-          {skillCategories.map(({ title, icon, logo, skills }) => (
+          {skillCategories.map(({ title, logo, skills }) => (
             <article className="skill-card" key={title}>
               <div className="skill-card-header">
-                {icon ? (
-                  createElement(icon, { size: 26, strokeWidth: 1.8 })
-                ) : (
-                  <img src={logo} alt="" />
-                )}
+                <img src={logo} alt="" />
                 <h3>{title}</h3>
               </div>
               <div className="skill-list">
                 {skills.map((skill) => (
                   <div className="skill-row" key={skill.name}>
                     <div className="skill-name">
-                      <img
-                        src={skill.logo}
-                        alt=""
-                        onError={(event) => {
-                          if (skill.fallbackLogo) {
-                            event.currentTarget.onerror = null;
-                            event.currentTarget.src = skill.fallbackLogo;
-                          }
-                        }}
-                      />
+                      <img src={skill.logo} alt="" />
                       {skill.name}
                     </div>
                     <span className="skill-value">{skill.level}%</span>

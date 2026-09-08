@@ -6,6 +6,7 @@ import AboutSection from "./components/AboutSection.jsx";
 import ProjectsSection from "./components/ProjectsSection.jsx";
 import SkillsSection from "./components/SkillsSection.jsx";
 import ContactsSection from "./components/ContactSection.jsx";
+import TechMarquee from "./components/TechMarquee.jsx";
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -36,6 +37,7 @@ function App() {
       </header>
       <main className="main-content">
         <HomeSection />
+        <TechMarquee />
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />

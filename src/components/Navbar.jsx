@@ -75,7 +75,7 @@ export default function Navbar({ theme, onToggleTheme }) {
       <img src={logo} alt="Karl Culi logo" />
       <span className="brand-copy">
         <span className="brand-name">Karl Culi</span>
-        <span className="brand-meta">dev.portfolio</span>
+        <span className="brand-meta">dev.porr</span>
       </span>
     </a>
   );
