@@ -1,4 +1,4 @@
-import { ArrowUpRight, Hammer } from "lucide-react";
+import { Hammer } from "lucide-react";
 import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Github, X } from "lucide-react";
@@ -263,7 +263,6 @@ function PlaceholderCard({ number }) {
         </p>
         <div className="project-foot">
           <span className="mono">IN DEVELOPMENT</span>
-          <ArrowUpRight size={16} />
         </div>
       </div>
     </article>
