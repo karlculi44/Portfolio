@@ -14,9 +14,9 @@ const skillCategories = [
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
       },
       {
-        name: "JavaScript",
+        name: "TypeScript",
         level: 85,
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
       },
       {
         name: "React",
