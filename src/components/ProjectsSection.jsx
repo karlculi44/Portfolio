@@ -1,7 +1,7 @@
 import { Hammer } from "lucide-react";
 import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Github, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Github, X } from "lucide-react";
 import ScrollReveal from "./ScrollReveal.jsx";
 
 const repositoryUrl = "https://github.com/karlculi44/ClassFlow";
@@ -10,10 +10,26 @@ const classFlowImages = [
   "Admin_Dashboard.webp",
   "Admin_Classes.webp",
   "Admin_Assignment_Graded.webp",
+  "Admin_Dashboard_Mobile.webp",
+  "Admin_Classes_Mobile.webp",
+];
+const financeTrackerRepositoryUrl =
+  "https://github.com/karlculi44/Finance-Tracker";
+const financeTrackerDemoUrl =
+  "https://finance-tracker-seven-dun-45.vercel.app/";
+const financeTrackerImages = [
+  "Home.webp",
+  "Analytics.webp",
+  "Expense_Distribution.webp",
+  "Transactions.webp",
+  "Home_Mobile.webp",
+  "Analytics_Mobile.webp",
 ];
 
 const imagePath = (fileName) =>
   `${import.meta.env.BASE_URL}projects/classflow/${encodeURIComponent(fileName)}`;
+const financeTrackerImagePath = (fileName) =>
+  `${import.meta.env.BASE_URL}projects/finance-tracker/${encodeURIComponent(fileName)}`;
 
 function CarouselButton({ direction, onClick }) {
   const isPrevious = direction === "previous";
@@ -134,6 +150,106 @@ function ProjectViewer({ imageIndex, onPrevious, onNext, onClose }) {
   );
 }
 
+function FinanceTrackerViewer({ imageIndex, onPrevious, onNext, onClose }) {
+  const [isClosing, setIsClosing] = useState(false);
+  const closeButtonRef = useRef(null);
+  const previousActiveElementRef = useRef(null);
+  const callbacksRef = useRef({ onPrevious, onNext, onClose });
+
+  callbacksRef.current = { onPrevious, onNext, onClose };
+
+  useEffect(() => {
+    previousActiveElementRef.current = document.activeElement;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const focusCloseButton = window.requestAnimationFrame(() => {
+      closeButtonRef.current?.focus();
+    });
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsClosing(true);
+      if (event.key === "ArrowLeft") callbacksRef.current.onPrevious();
+      if (event.key === "ArrowRight") callbacksRef.current.onNext();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.cancelAnimationFrame(focusCloseButton);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+      previousActiveElementRef.current?.focus?.();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isClosing) return undefined;
+
+    const closeTimer = window.setTimeout(onClose, 180);
+    return () => window.clearTimeout(closeTimer);
+  }, [isClosing, onClose]);
+
+  const requestClose = () => setIsClosing(true);
+
+  return createPortal(
+    <div
+      className={`project-modal${isClosing ? " is-closing" : ""}`}
+      role="presentation"
+      onClick={requestClose}
+    >
+      <div
+        className="project-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Finance Tracker project screenshots"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="project-modal-header">
+          <span className="mono">FINANCE TRACKER / SCREENSHOTS</span>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            className="icon-button"
+            onClick={requestClose}
+            aria-label="Close screenshots"
+          >
+            <X size={18} />
+          </button>
+        </div>
+        <div className="project-modal-image-wrap">
+          <img
+            src={financeTrackerImagePath(financeTrackerImages[imageIndex])}
+            alt={`Finance Tracker screenshot ${imageIndex + 1}`}
+          />
+          <button
+            type="button"
+            className="modal-carousel-button modal-carousel-previous"
+            onClick={onPrevious}
+            aria-label="Previous Finance Tracker screenshot"
+          >
+            <ArrowLeft size={20} />
+          </button>
+          <button
+            type="button"
+            className="modal-carousel-button modal-carousel-next"
+            onClick={onNext}
+            aria-label="Next Finance Tracker screenshot"
+          >
+            <ArrowRight size={20} />
+          </button>
+        </div>
+        <div className="project-modal-footer">
+          <span>{financeTrackerImages[imageIndex].replaceAll("_", " ")}</span>
+          <span className="mono">
+            {String(imageIndex + 1).padStart(2, "0")} /{" "}
+            {String(financeTrackerImages.length).padStart(2, "0")}
+          </span>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
 function ClassFlowCard() {
   const [currentImage, setCurrentImage] = useState(0);
   const [modalImage, setModalImage] = useState(null);
@@ -216,11 +332,14 @@ function ClassFlowCard() {
             <span>OAuth</span>
           </div>
           <div className="project-actions">
+            <span className="button button-primary button-static">
+              Live demo coming soon
+            </span>
             <a
               href={repositoryUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="button button-primary"
+              className="button button-secondary"
               onClick={(event) => event.stopPropagation()}
             >
               <Github size={15} /> GitHub
@@ -240,6 +359,130 @@ function ClassFlowCard() {
           }
           onNext={() =>
             setModalImage((index) => (index + 1) % classFlowImages.length)
+          }
+          onClose={() => setModalImage(null)}
+        />
+      )}
+    </>
+  );
+}
+
+function FinanceTrackerCard() {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [modalImage, setModalImage] = useState(null);
+  const [carouselReset, setCarouselReset] = useState(0);
+
+  const goToImage = (offset) => {
+    setCurrentImage(
+      (index) =>
+        (index + offset + financeTrackerImages.length) %
+        financeTrackerImages.length,
+    );
+    setCarouselReset((value) => value + 1);
+  };
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setCurrentImage((index) => (index + 1) % financeTrackerImages.length);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, [carouselReset]);
+
+  return (
+    <>
+      <article
+        className="project-card classflow-card"
+        onClick={() => setModalImage(currentImage)}
+      >
+        <div
+          className="project-image-wrap"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              setModalImage(currentImage);
+            }
+          }}
+          aria-label="Open Finance Tracker project screenshots"
+        >
+          <div
+            className="project-image-track"
+            style={{ transform: `translateX(-${currentImage * 100}%)` }}
+          >
+            {financeTrackerImages.map((fileName) => (
+              <img
+                key={fileName}
+                src={financeTrackerImagePath(fileName)}
+                alt={`Finance Tracker ${fileName.replaceAll("_", " ").replace(".webp", "")}`}
+              />
+            ))}
+          </div>
+          <div className="project-carousel-controls">
+            <CarouselButton
+              direction="previous"
+              onClick={() => goToImage(-1)}
+            />
+            <span className="project-image-count mono">
+              {String(currentImage + 1).padStart(2, "0")} /{" "}
+              {String(financeTrackerImages.length).padStart(2, "0")}
+            </span>
+            <CarouselButton direction="next" onClick={() => goToImage(1)} />
+          </div>
+        </div>
+        <div className="project-body">
+          <div className="project-card-heading">
+            <div>
+              <span className="project-index">PROJECT_02</span>
+              <h3>Finance Tracker</h3>
+            </div>
+          </div>
+          <p>
+            A responsive personal finance dashboard for tracking transactions,
+            spending patterns, and financial activity.
+          </p>
+          <div className="project-tags">
+            <span>React</span>
+            <span>TypeScript</span>
+            <span>Tailwind</span>
+            <span>Recharts</span>
+          </div>
+          <div className="project-actions">
+            <a
+              href={financeTrackerDemoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button-primary"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <ExternalLink size={15} /> Live demo
+            </a>
+            <a
+              href={financeTrackerRepositoryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button-secondary"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <Github size={15} /> GitHub
+            </a>
+          </div>
+        </div>
+      </article>
+
+      {modalImage !== null && (
+        <FinanceTrackerViewer
+          imageIndex={modalImage}
+          onPrevious={() =>
+            setModalImage(
+              (index) =>
+                (index - 1 + financeTrackerImages.length) %
+                financeTrackerImages.length,
+            )
+          }
+          onNext={() =>
+            setModalImage((index) => (index + 1) % financeTrackerImages.length)
           }
           onClose={() => setModalImage(null)}
         />
@@ -288,7 +531,7 @@ export default function ProjectsSection() {
             <ClassFlowCard />
           </ScrollReveal>
           <ScrollReveal className="project-reveal" delay={100}>
-            <PlaceholderCard number="02" />
+            <FinanceTrackerCard />
           </ScrollReveal>
           <ScrollReveal className="project-reveal" delay={200}>
             <PlaceholderCard number="03" />

@@ -798,6 +798,12 @@ h3 {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(117, 210, 189, 0.18);
 }
+.button-static,
+.button-static:hover {
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
 :root[data-theme="light"] .button-primary {
   color: #176057;
   background: #dceee9;
