@@ -1,4 +1,4 @@
-import { ArrowUpRight, Download, Terminal } from "lucide-react";
+import { ArrowUpRight, Download, ExternalLink, Terminal } from "lucide-react";
 import picture from "../assets/Picture2.jpg";
 import ScrollReveal from "./ScrollReveal.jsx";
 
@@ -45,7 +45,15 @@ export default function HomeSection() {
                 <strong>Learning</strong>Software Engineering
               </div>
               <div>
-                <strong>Based in</strong>Bayawan City, PH
+                <strong>Based in</strong>
+                <a
+                  className="hero-location-link"
+                  href="https://www.google.com/maps/search/?api=1&query=Bayawan+City,+Negros+Oriental,+Philippines+6221"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Bayawan City, PH <ExternalLink size={12} aria-hidden="true" />
+                </a>
               </div>
             </div>
           </ScrollReveal>

@@ -4,7 +4,6 @@ import {
   FaEnvelope,
   FaFacebookF,
   FaGithub,
-  FaHome,
   FaInstagram,
   FaLinkedinIn,
   FaPhoneAlt,
@@ -38,12 +37,6 @@ const contacts = [
     icon: FaPhoneAlt,
     link: "tel:+639533019178",
     text: "+63 953 301 9178",
-  },
-  {
-    platform: "Address",
-    icon: FaHome,
-    link: "https://www.google.com/maps/search/?api=1&query=Bayawan+City,+Negros+Oriental,+Philippines+6221",
-    text: "Bayawan City, Negros Oriental",
   },
 ];
 
