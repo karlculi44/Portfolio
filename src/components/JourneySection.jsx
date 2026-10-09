@@ -2,7 +2,7 @@ import ScrollReveal from "./ScrollReveal.jsx";
 
 const milestones = [
   {
-    title: "My First Hello, World!",
+    title: 'My First "Hello, World!"',
     date: "August 2022",
     start: "2022-08",
   },
