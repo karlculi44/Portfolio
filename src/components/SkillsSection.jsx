@@ -126,7 +126,7 @@ export default function SkillsSection() {
       <div className="section-inner">
         <div className="section-heading">
           <div>
-            <div className="eyebrow">04 / toolkit</div>
+            <div className="eyebrow">05 / toolkit</div>
             <h2>Tech stack</h2>
           </div>
           <p>

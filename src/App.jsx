@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar.jsx";
 import HomeSection from "./components/HomeSection.jsx";
 import AboutSection from "./components/AboutSection.jsx";
+import JourneySection from "./components/JourneySection.jsx";
 import ProjectsSection from "./components/ProjectsSection.jsx";
 import SkillsSection from "./components/SkillsSection.jsx";
 import ContactsSection from "./components/ContactSection.jsx";
@@ -41,6 +42,7 @@ function App() {
         <HomeSection />
         <TechMarquee />
         <AboutSection />
+        <JourneySection />
         <ProjectsSection />
         <SkillsSection />
         <ContactsSection />

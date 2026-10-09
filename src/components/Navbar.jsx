@@ -4,6 +4,7 @@ import {
   FolderGit2,
   House,
   Mail,
+  Milestone,
   Menu,
   Moon,
   Sun,
@@ -15,6 +16,7 @@ import logo from "/LOGO.png";
 const navLinks = [
   { name: "Home", to: "home", icon: House },
   { name: "About", to: "about", icon: UserRound },
+  { name: "Journey", to: "journey", icon: Milestone },
   { name: "Work", to: "projects", icon: FolderGit2 },
   { name: "Stack", to: "skills", icon: Code2 },
   { name: "Contact", to: "contact", icon: Mail },

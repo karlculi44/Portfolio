@@ -46,7 +46,7 @@ export default function ContactsSection() {
       <div className="section-inner">
         <div className="section-heading">
           <div>
-            <div className="eyebrow">05 / connect</div>
+            <div className="eyebrow">06 / connect</div>
             <h2>Let’s build something.</h2>
           </div>
           <p>

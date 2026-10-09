@@ -5,6 +5,7 @@ export default function ScrollReveal({
   children,
   className = "",
   delay = 0,
+  ...props
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef(null);
@@ -37,6 +38,7 @@ export default function ScrollReveal({
   return createElement(
     Element,
     {
+      ...props,
       ref: elementRef,
       className: `scroll-reveal${isVisible ? " is-visible" : ""}${className ? ` ${className}` : ""}`,
       style: { "--scroll-reveal-delay": `${delay}ms` },
